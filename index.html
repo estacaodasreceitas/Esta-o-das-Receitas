@@ -118,6 +118,14 @@
     width:26px;height:26px;background:var(--brick);
     border-radius:50%;border:2px solid var(--ink);
   }
+  .receipt-photo{
+    width:100%;
+    height:150px;
+    object-fit:cover;
+    border-radius:2px;
+    border:1.5px solid var(--ink);
+    margin-bottom:14px;
+  }
   .receipt-title{
     font-family:'Caveat', cursive;font-size:1.6rem;font-weight:700;
     color:var(--brick-dark);margin-bottom:10px;
@@ -287,11 +295,12 @@
         </div>
       </div>
       <div class="receipt">
-        <div class="receipt-title">Arroz cremoso de frango</div>
-        <div class="receipt-row"><span>Tempo de preparo</span><span>25 min</span></div>
-        <div class="receipt-row"><span>Rende</span><span>4 porções</span></div>
-        <div class="receipt-row"><span>Ingredientes</span><span>7 itens</span></div>
-        <div class="receipt-total"><span>Custo por porção</span><span class="value">R$ 4,90</span></div>
+        <img class="receipt-photo" src="coxinha.jpg" alt="Coxinha de frango com batata">
+        <div class="receipt-title">Coxinha de frango com batata</div>
+        <div class="receipt-row"><span>Tempo de preparo</span><span>1h20</span></div>
+        <div class="receipt-row"><span>Rende</span><span>~25 unidades</span></div>
+        <div class="receipt-row"><span>Ingredientes</span><span>13 itens</span></div>
+        <div class="receipt-total"><span>Dificuldade</span><span class="value">Média</span></div>
       </div>
     </div>
   </section>
@@ -313,22 +322,20 @@
           <h2>Receita nova toda semana,<br>sem precisar procurar</h2>
           <p>Manda pra você em PDF ou vídeo, junto com o vídeo do nosso Instagram. Sem spam — só receita.</p>
         </div>
-        <form id="lead-form">
+        <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+        <form id="lead-form" method="POST" action="https://30ab9805.sibforms.com/serve/MUIFANnR9xChI-1nBx1mg45zFJtOKbh8lTKtak8Y_0sOrB9OMwVDV9MsukfFZg_6Mo70wbtzSBvdwiVp8uqOQnT_opeU28K68svKNxqF1rQPTHEQMbz5IMUy8T_3H4Or3KBd58yxBW3ce9WvliiKf0Q8t6i_DeklsNkTCBX-8KfnGtmkyKQKwYL3vRAUlNxavL4iy9KBhsN3gf-T4w==" target="hidden_iframe">
           <div class="field">
-            <label for="nome">Nome</label>
-            <input type="text" id="nome" name="nome" placeholder="Como podemos te chamar?" required>
+            <label for="NOME">Nome</label>
+            <input type="text" id="NOME" name="NOME" placeholder="Como podemos te chamar?" required>
           </div>
           <div class="field">
-            <label for="contato">Email ou WhatsApp</label>
-            <input type="text" id="contato" name="contato" placeholder="voce@email.com ou (11) 99999-9999" required>
+            <label for="EMAIL">Email</label>
+            <input type="email" id="EMAIL" name="EMAIL" placeholder="voce@email.com" required>
           </div>
-          <div class="channel-choice">
-            <label><input type="radio" name="canal" value="email" checked> Prefiro Email</label>
-            <label><input type="radio" name="canal" value="whatsapp"> Prefiro WhatsApp</label>
-          </div>
+          <input type="text" name="email_address_check" value="" style="display:none">
+          <input type="hidden" name="locale" value="pt">
           <button type="submit" class="submit-btn">Quero receitas grátis toda semana</button>
-          <span class="form-note">Você pode cancelar quando quiser. Sem spam, prometido.</span>
-          <div class="success-msg" id="success-msg">Prontinho! Fica de olho no seu email/WhatsApp 🍲</div>
+          <span class="form-note">Você pode cancelar quando quiser. Sem spam, prometido. (Em breve também por WhatsApp)</span>
         </form>
       </div>
     </div>
@@ -343,29 +350,29 @@
     <div class="grid">
 
       <div class="card">
-        <span class="tag-corner">R$ 3,80</span>
-        <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500&h=400&fit=crop" alt="Macarrão à bolonhesa simples">
+        <span class="tag-corner">Médio</span>
+        <img src="https://loremflickr.com/500/400/carrotcake,chocolate" alt="Bolo de cenoura com cobertura de chocolate">
         <div class="card-body">
-          <h3>Macarrão à bolonhesa simples</h3>
-          <div class="card-meta"><span>⏱ 20 min</span><span>🍽 4 porções</span></div>
+          <h3>Bolo de cenoura com cobertura de chocolate</h3>
+          <div class="card-meta"><span>⏱ 50 min</span><span>🍽 12 porções</span></div>
         </div>
       </div>
 
       <div class="card">
-        <span class="tag-corner">R$ 2,50</span>
-        <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?w=500&h=400&fit=crop" alt="Omelete de forno com legumes">
+        <span class="tag-corner">Fácil</span>
+        <img src="https://loremflickr.com/500/400/pasta,cheese" alt="Macarrão de panela de pressão">
         <div class="card-body">
-          <h3>Omelete de forno com legumes</h3>
-          <div class="card-meta"><span>⏱ 15 min</span><span>🍽 3 porções</span></div>
+          <h3>Macarrão de panela de pressão</h3>
+          <div class="card-meta"><span>⏱ 20 min</span><span>🍽 6 porções</span></div>
         </div>
       </div>
 
       <div class="card">
-        <span class="tag-corner">R$ 4,20</span>
-        <img src="https://images.unsplash.com/photo-1476124369491-e7addf5db371?w=500&h=400&fit=crop" alt="Feijão tropeiro rápido">
+        <span class="tag-corner">Fácil</span>
+        <img src="https://loremflickr.com/500/400/mugcake,chocolate" alt="Bolo de caneca de chocolate">
         <div class="card-body">
-          <h3>Feijão tropeiro rápido</h3>
-          <div class="card-meta"><span>⏱ 30 min</span><span>🍽 5 porções</span></div>
+          <h3>Bolo de caneca de chocolate</h3>
+          <div class="card-meta"><span>⏱ 5 min</span><span>🍽 1 porção</span></div>
         </div>
       </div>
 
@@ -376,20 +383,80 @@
       </div>
 
       <div class="card">
-        <span class="tag-corner">R$ 3,10</span>
-        <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&h=400&fit=crop" alt="Sopa cremosa de mandioquinha">
+        <span class="tag-corner">Fácil</span>
+        <img src="https://loremflickr.com/500/400/omelette,cheese" alt="Omelete recheada">
         <div class="card-body">
-          <h3>Sopa cremosa de mandioquinha</h3>
-          <div class="card-meta"><span>⏱ 35 min</span><span>🍽 4 porções</span></div>
+          <h3>Omelete recheada</h3>
+          <div class="card-meta"><span>⏱ 10 min</span><span>🍽 1 porção</span></div>
         </div>
       </div>
 
       <div class="card">
-        <span class="tag-corner">R$ 2,90</span>
-        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&h=400&fit=crop" alt="Arroz de forno cremoso">
+        <span class="tag-corner">Fácil</span>
+        <img src="https://loremflickr.com/500/400/brigadeiro,chocolate" alt="Brigadeiro tradicional">
+        <div class="card-body">
+          <h3>Brigadeiro tradicional</h3>
+          <div class="card-meta"><span>⏱ 15 min</span><span>🍽 rende 20 unid.</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">Fácil</span>
+        <img src="https://loremflickr.com/500/400/grilledchicken,lemon" alt="Frango grelhado com limão">
+        <div class="card-body">
+          <h3>Frango grelhado com limão</h3>
+          <div class="card-meta"><span>⏱ 20 min</span><span>🍽 2 porções</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">Médio</span>
+        <img src="https://loremflickr.com/500/400/bakedrice,cheese" alt="Arroz de forno cremoso">
         <div class="card-body">
           <h3>Arroz de forno cremoso</h3>
-          <div class="card-meta"><span>⏱ 40 min</span><span>🍽 6 porções</span></div>
+          <div class="card-meta"><span>⏱ 35 min</span><span>🍽 6 porções</span></div>
+        </div>
+      </div>
+
+      <!-- IN-FEED AD SLOT -->
+      <div class="ad-slot ad-inline">
+        <span class="ad-label">Publicidade</span>
+        <span>Espaço de anúncio — card no feed de receitas</span>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">Fácil</span>
+        <img src="https://loremflickr.com/500/400/chocolatechipcookies" alt="Cookies de chocolate">
+        <div class="card-body">
+          <h3>Cookies de chocolate</h3>
+          <div class="card-meta"><span>⏱ 25 min</span><span>🍽 rende 15 unid.</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">Fácil</span>
+        <img src="https://loremflickr.com/500/400/skilletpizza" alt="Pizza de frigideira">
+        <div class="card-body">
+          <h3>Pizza de frigideira</h3>
+          <div class="card-meta"><span>⏱ 20 min</span><span>🍽 3 porções</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">Fácil</span>
+        <img src="https://loremflickr.com/500/400/passionfruit,mousse" alt="Mousse de maracujá">
+        <div class="card-body">
+          <h3>Mousse de maracujá</h3>
+          <div class="card-meta"><span>⏱ 10 min + geladeira</span><span>🍽 8 porções</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">Média</span>
+        <img src="coxinha.jpg" alt="Coxinha de frango com batata">
+        <div class="card-body">
+          <h3>Coxinha de frango com batata</h3>
+          <div class="card-meta"><span>⏱ 1h20</span><span>🍽 ~25 unid.</span></div>
         </div>
       </div>
 
@@ -401,16 +468,16 @@
     <div class="wrap">
       <div class="insta-head">
         <h2>Segue lá no Instagram</h2>
-        <p>Vídeo novo toda semana com o passo a passo — @estacaodasreceitas</p>
+        <p>Vídeo novo toda semana com o passo a passo — @receitaaminuto</p>
       </div>
       <div class="insta-grid">
-        <a href="#" aria-label="Vídeo de receita 1"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=400&fit=crop" alt=""></a>
-        <a href="#" aria-label="Vídeo de receita 2"><img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=400&h=400&fit=crop" alt=""></a>
-        <a href="#" aria-label="Vídeo de receita 3"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=400&fit=crop" alt=""></a>
-        <a href="#" aria-label="Vídeo de receita 4"><img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=400&h=400&fit=crop" alt=""></a>
+        <a href="https://www.instagram.com/receitaaminuto/" target="_blank" rel="noopener" aria-label="Vídeo de receita 1"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=400&fit=crop" alt=""></a>
+        <a href="https://www.instagram.com/receitaaminuto/" target="_blank" rel="noopener" aria-label="Vídeo de receita 2"><img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=400&h=400&fit=crop" alt=""></a>
+        <a href="https://www.instagram.com/receitaaminuto/" target="_blank" rel="noopener" aria-label="Vídeo de receita 3"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=400&fit=crop" alt=""></a>
+        <a href="https://www.instagram.com/receitaaminuto/" target="_blank" rel="noopener" aria-label="Vídeo de receita 4"><img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=400&h=400&fit=crop" alt=""></a>
       </div>
       <div class="insta-cta">
-        <a href="#" target="_blank" rel="noopener">Ver perfil no Instagram →</a>
+        <a href="https://www.instagram.com/receitaaminuto/" target="_blank" rel="noopener">Ver perfil no Instagram →</a>
       </div>
     </div>
   </section>
@@ -434,25 +501,19 @@
       <div class="footer-col">
         <h4>Redes</h4>
         <ul>
-          <li><a href="#">Instagram</a></li>
+          <li><a href="https://www.instagram.com/receitaaminuto/" target="_blank" rel="noopener">Instagram</a></li>
           <li><a href="#">WhatsApp</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 Estação das Receitas</span>
-      <span>Política de privacidade</span>
+      <span><a href="privacidade.html" style="color:inherit;">Política de privacidade</a></span>
     </div>
   </div>
 </footer>
 
-<script>
-  document.getElementById('lead-form').addEventListener('submit', function(e){
-    e.preventDefault();
-    document.getElementById('success-msg').style.display = 'block';
-    this.reset();
-  });
-</script>
+
 
 </body>
 </html>
