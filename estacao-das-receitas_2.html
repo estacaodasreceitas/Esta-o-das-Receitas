@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Estação das Receitas — Receitas rápidas e baratas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Work+Sans:wght@400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-paper:#FAF6ED;
+    --bg-card:#FFFFFF;
+    --ink:#33241A;
+    --ink-soft:#7A6A57;
+    --brick:#C1502E;
+    --brick-dark:#9C3D22;
+    --mustard:#DFA125;
+    --olive:#6E7B3D;
+    --line:#E6DCC6;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg-paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.5;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;}
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    margin:0;
+    line-height:1.1;
+    font-weight:600;
+  }
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-family:'Caveat', cursive;
+    font-size:1.4rem;
+    color:var(--brick);
+    display:inline-block;
+    transform:rotate(-2deg);
+    margin-bottom:4px;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:var(--bg-paper);
+    border-bottom:2px solid var(--ink);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    display:flex;align-items:center;gap:8px;
+  }
+  .logo span{color:var(--brick);}
+  .nav-links{display:flex;gap:28px;font-weight:500;font-size:0.95rem;}
+  .nav-links a{text-decoration:none;border-bottom:2px solid transparent;padding-bottom:2px;transition:border-color .15s;}
+  .nav-links a:hover, .nav-links a:focus-visible{border-color:var(--brick);outline:none;}
+  .nav-cta{
+    background:var(--brick);color:var(--white);
+    padding:10px 18px;border-radius:100px;
+    font-weight:600;font-size:0.9rem;text-decoration:none;
+    border:2px solid var(--ink);
+    box-shadow:3px 3px 0 var(--ink);
+    transition:transform .12s;
+  }
+  .nav-cta:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink);}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:72px 0 56px;}
+  .hero-grid{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;
+  }
+  .hero h1{font-size:3.1rem;font-weight:600;}
+  .hero h1 em{color:var(--brick);font-style:italic;}
+  .hero p.lede{
+    font-size:1.15rem;color:var(--ink-soft);max-width:44ch;margin-top:18px;
+  }
+  .hero-actions{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--ink);color:var(--bg-paper);
+    padding:14px 26px;border-radius:100px;font-weight:600;
+    text-decoration:none;border:2px solid var(--ink);
+    box-shadow:3px 3px 0 var(--brick);
+    transition:transform .12s;
+  }
+  .btn-primary:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--brick);}
+  .btn-ghost{
+    padding:14px 26px;border-radius:100px;font-weight:600;
+    text-decoration:none;border:2px solid var(--ink);color:var(--ink);
+  }
+
+  /* signature: receipt / price-tag card */
+  .receipt{
+    background:var(--bg-card);
+    border:2px solid var(--ink);
+    border-radius:4px;
+    padding:24px 22px;
+    position:relative;
+    box-shadow:6px 6px 0 var(--mustard);
+    transform:rotate(2deg);
+    font-family:'Work Sans', sans-serif;
+  }
+  .receipt::before{
+    content:"";
+    position:absolute;top:-10px;right:24px;
+    width:26px;height:26px;background:var(--brick);
+    border-radius:50%;border:2px solid var(--ink);
+  }
+  .receipt-title{
+    font-family:'Caveat', cursive;font-size:1.6rem;font-weight:700;
+    color:var(--brick-dark);margin-bottom:10px;
+  }
+  .receipt-row{
+    display:flex;justify-content:space-between;font-size:0.92rem;
+    padding:7px 0;border-bottom:1px dashed var(--line);
+  }
+  .receipt-row:last-of-type{border-bottom:none;}
+  .receipt-total{
+    display:flex;justify-content:space-between;
+    margin-top:12px;padding-top:12px;border-top:2px solid var(--ink);
+    font-weight:700;font-size:1.05rem;
+  }
+  .receipt-total .value{color:var(--brick);}
+
+  /* ---------- AD SLOT ---------- */
+  .ad-slot{
+    background:var(--bg-card);
+    border:1.5px dashed var(--ink-soft);
+    border-radius:8px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    color:var(--ink-soft);
+    text-align:center;
+    padding:18px;
+  }
+  .ad-slot .ad-label{
+    font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;
+    margin-bottom:6px;opacity:0.7;
+  }
+  .ad-banner{max-width:1120px;margin:8px auto 0;min-height:90px;}
+  .ad-inline{min-height:220px;}
+  .ad-section{padding:8px 0 40px;}
+
+  /* ---------- CAPTURE FORM ---------- */
+  .capture{padding:56px 0;}
+  .capture-card{
+    background:var(--ink);
+    color:var(--bg-paper);
+    border-radius:16px;
+    padding:48px;
+    display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;
+  }
+  .capture h2{color:var(--white);font-size:2rem;}
+  .capture p{color:#D9C9B0;margin-top:12px;max-width:40ch;}
+  form{display:flex;flex-direction:column;gap:14px;}
+  .field{display:flex;flex-direction:column;gap:6px;}
+  label{font-size:0.85rem;font-weight:600;color:#D9C9B0;}
+  input[type="text"], input[type="email"], input[type="tel"]{
+    padding:13px 14px;border-radius:8px;border:none;
+    font-family:'Work Sans', sans-serif;font-size:0.95rem;
+    background:var(--bg-paper);color:var(--ink);
+  }
+  input:focus-visible{outline:3px solid var(--mustard);outline-offset:1px;}
+  .channel-choice{display:flex;gap:16px;font-size:0.9rem;color:#D9C9B0;}
+  .channel-choice label{display:flex;align-items:center;gap:6px;font-weight:400;color:#D9C9B0;}
+  .submit-btn{
+    background:var(--brick);color:var(--white);border:none;
+    padding:14px 20px;border-radius:8px;font-weight:700;font-size:0.98rem;
+    cursor:pointer;transition:background .15s;margin-top:4px;
+  }
+  .submit-btn:hover{background:var(--brick-dark);}
+  .submit-btn:focus-visible{outline:3px solid var(--mustard);outline-offset:2px;}
+  .form-note{font-size:0.78rem;color:#B4A184;margin-top:2px;}
+  .success-msg{
+    display:none;background:var(--olive);color:var(--white);
+    padding:14px;border-radius:8px;font-weight:600;font-size:0.92rem;
+  }
+
+  /* ---------- RECIPES GRID ---------- */
+  .section-head{padding:8px 0 32px;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:12px;}
+  .section-head h2{font-size:2rem;}
+  .recipes{padding:24px 0 8px;}
+  .grid{
+    display:grid;grid-template-columns:repeat(3, 1fr);gap:26px;
+  }
+  .card{
+    background:var(--bg-card);border-radius:12px;overflow:hidden;
+    border:1px solid var(--line);
+    transition:transform .15s, box-shadow .15s;
+    position:relative;
+  }
+  .card:hover{transform:translateY(-4px);box-shadow:0 10px 24px rgba(51,36,26,0.12);}
+  .card img{height:170px;width:100%;object-fit:cover;}
+  .tag-corner{
+    position:absolute;top:12px;left:12px;
+    background:var(--mustard);color:var(--ink);
+    font-family:'Caveat', cursive;font-weight:700;font-size:1.05rem;
+    padding:3px 12px;border-radius:100px;border:1.5px solid var(--ink);
+    transform:rotate(-3deg);
+  }
+  .card-body{padding:16px 18px 20px;}
+  .card h3{font-size:1.15rem;margin-bottom:8px;}
+  .card-meta{display:flex;gap:14px;font-size:0.82rem;color:var(--ink-soft);margin-bottom:4px;}
+  .card-meta span{display:flex;align-items:center;gap:5px;}
+
+  /* ---------- INSTAGRAM ---------- */
+  .insta{padding:64px 0;}
+  .insta-head{text-align:center;margin-bottom:28px;}
+  .insta-head h2{font-size:1.9rem;}
+  .insta-head p{color:var(--ink-soft);margin-top:8px;}
+  .insta-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .insta-grid a{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:1/1;}
+  .insta-grid img{width:100%;height:100%;object-fit:cover;transition:transform .2s;}
+  .insta-grid a:hover img{transform:scale(1.06);}
+  .insta-cta{text-align:center;margin-top:26px;}
+  .insta-cta a{
+    display:inline-block;border:2px solid var(--ink);padding:12px 26px;
+    border-radius:100px;font-weight:600;text-decoration:none;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink);color:#D9C9B0;padding:48px 0 28px;margin-top:40px;}
+  .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;padding-bottom:32px;border-bottom:1px solid #5A452F;}
+  .footer-logo{font-family:'Fraunces', serif;font-size:1.3rem;color:var(--white);margin-bottom:10px;}
+  .footer-col h4{color:var(--white);font-size:0.9rem;margin-bottom:12px;}
+  .footer-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px;font-size:0.9rem;}
+  .footer-col a{text-decoration:none;}
+  .footer-col a:hover{color:var(--mustard);}
+  .footer-bottom{display:flex;justify-content:space-between;padding-top:20px;font-size:0.78rem;flex-wrap:wrap;gap:8px;}
+
+  @media (max-width:860px){
+    .nav-links{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero h1{font-size:2.3rem;}
+    .capture-card{grid-template-columns:1fr;padding:32px 24px;}
+    .grid{grid-template-columns:1fr 1fr;}
+    .insta-grid{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:560px){
+    .grid{grid-template-columns:1fr;}
+    .hero{padding:40px 0;}
+    .capture-card{padding:24px 18px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <div class="logo">Estação das <span>Receitas</span></div>
+    <nav class="nav-links">
+      <a href="#receitas">Receitas</a>
+      <a href="#receber">Receber grátis</a>
+      <a href="#instagram">Instagram</a>
+    </nav>
+    <a class="nav-cta" href="#receber">Quero receitas grátis</a>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">toda semana, receita nova</span>
+        <h1>Comida boa e <em>barata</em><br>pro dia a dia da sua cozinha</h1>
+        <p class="lede">Receitas testadas, com ingrediente que cabe no mercado da esquina e não pesa no bolso. Rápidas de fazer, boas de comer.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#receber">Receber receitas grátis</a>
+          <a class="btn-ghost" href="#receitas">Ver receitas</a>
+        </div>
+      </div>
+      <div class="receipt">
+        <div class="receipt-title">Arroz cremoso de frango</div>
+        <div class="receipt-row"><span>Tempo de preparo</span><span>25 min</span></div>
+        <div class="receipt-row"><span>Rende</span><span>4 porções</span></div>
+        <div class="receipt-row"><span>Ingredientes</span><span>7 itens</span></div>
+        <div class="receipt-total"><span>Custo por porção</span><span class="value">R$ 4,90</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AD SLOT: top banner -->
+  <div class="wrap ad-section">
+    <div class="ad-slot ad-banner">
+      <span class="ad-label">Publicidade</span>
+      <span>Espaço de anúncio — banner 728×90 (topo)</span>
+    </div>
+  </div>
+
+  <!-- LEAD CAPTURE -->
+  <section class="capture" id="receber">
+    <div class="wrap">
+      <div class="capture-card">
+        <div>
+          <span class="eyebrow" style="color:var(--mustard)">de graça, na sua caixa de entrada</span>
+          <h2>Receita nova toda semana,<br>sem precisar procurar</h2>
+          <p>Manda pra você em PDF ou vídeo, junto com o vídeo do nosso Instagram. Sem spam — só receita.</p>
+        </div>
+        <form id="lead-form" method="POST" action="https://30ab9805.sibforms.com/serve/MUIFANnR9xChI-1nBx1mg45zFJtOKbh8lTKtak8Y_0sOrB9OMwVDV9MsukfFZg_6Mo70wbtzSBvdwiVp8uqOQnT_opeU28K68svKNxqF1rQPTHEQMbz5IMUy8T_3H4Or3KBd58yxBW3ce9WvliiKf0Q8t6i_DeklsNkTCBX-8KfnGtmkyKQKwYL3vRAUlNxavL4iy9KBhsN3gf-T4w==" target="_blank">
+          <div class="field">
+            <label for="NOME">Nome</label>
+            <input type="text" id="NOME" name="NOME" placeholder="Como podemos te chamar?" required>
+          </div>
+          <div class="field">
+            <label for="EMAIL">Email</label>
+            <input type="email" id="EMAIL" name="EMAIL" placeholder="voce@email.com" required>
+          </div>
+          <input type="text" name="email_address_check" value="" style="display:none">
+          <input type="hidden" name="locale" value="pt">
+          <button type="submit" class="submit-btn">Quero receitas grátis toda semana</button>
+          <span class="form-note">Você pode cancelar quando quiser. Sem spam, prometido. (Em breve também por WhatsApp)</span>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECIPES -->
+  <section class="recipes wrap" id="receitas">
+    <div class="section-head">
+      <h2>Receitas da semana</h2>
+      <a class="btn-ghost" href="#">Ver todas</a>
+    </div>
+    <div class="grid">
+
+      <div class="card">
+        <span class="tag-corner">R$ 1,80</span>
+        <img src="https://loremflickr.com/500/400/carrotcake,chocolate" alt="Bolo de cenoura com cobertura de chocolate">
+        <div class="card-body">
+          <h3>Bolo de cenoura com cobertura de chocolate</h3>
+          <div class="card-meta"><span>⏱ 50 min</span><span>🍽 12 porções</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">R$ 5,50</span>
+        <img src="https://loremflickr.com/500/400/pasta,cheese" alt="Macarrão de panela de pressão">
+        <div class="card-body">
+          <h3>Macarrão de panela de pressão</h3>
+          <div class="card-meta"><span>⏱ 20 min</span><span>🍽 6 porções</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">R$ 2,00</span>
+        <img src="https://loremflickr.com/500/400/mugcake,chocolate" alt="Bolo de caneca de chocolate">
+        <div class="card-body">
+          <h3>Bolo de caneca de chocolate</h3>
+          <div class="card-meta"><span>⏱ 5 min</span><span>🍽 1 porção</span></div>
+        </div>
+      </div>
+
+      <!-- IN-FEED AD SLOT -->
+      <div class="ad-slot ad-inline">
+        <span class="ad-label">Publicidade</span>
+        <span>Espaço de anúncio — card no feed de receitas</span>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">R$ 4,50</span>
+        <img src="https://loremflickr.com/500/400/omelette,cheese" alt="Omelete recheada">
+        <div class="card-body">
+          <h3>Omelete recheada</h3>
+          <div class="card-meta"><span>⏱ 10 min</span><span>🍽 1 porção</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">R$ 0,90</span>
+        <img src="https://loremflickr.com/500/400/brigadeiro,chocolate" alt="Brigadeiro tradicional">
+        <div class="card-body">
+          <h3>Brigadeiro tradicional</h3>
+          <div class="card-meta"><span>⏱ 15 min</span><span>🍽 rende 20 unid.</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">R$ 6,00</span>
+        <img src="https://loremflickr.com/500/400/grilledchicken,lemon" alt="Frango grelhado com limão">
+        <div class="card-body">
+          <h3>Frango grelhado com limão</h3>
+          <div class="card-meta"><span>⏱ 20 min</span><span>🍽 2 porções</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">R$ 4,20</span>
+        <img src="https://loremflickr.com/500/400/bakedrice,cheese" alt="Arroz de forno cremoso">
+        <div class="card-body">
+          <h3>Arroz de forno cremoso</h3>
+          <div class="card-meta"><span>⏱ 35 min</span><span>🍽 6 porções</span></div>
+        </div>
+      </div>
+
+      <!-- IN-FEED AD SLOT -->
+      <div class="ad-slot ad-inline">
+        <span class="ad-label">Publicidade</span>
+        <span>Espaço de anúncio — card no feed de receitas</span>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">R$ 1,20</span>
+        <img src="https://loremflickr.com/500/400/chocolatechipcookies" alt="Cookies de chocolate">
+        <div class="card-body">
+          <h3>Cookies de chocolate</h3>
+          <div class="card-meta"><span>⏱ 25 min</span><span>🍽 rende 15 unid.</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">R$ 3,50</span>
+        <img src="https://loremflickr.com/500/400/skilletpizza" alt="Pizza de frigideira">
+        <div class="card-body">
+          <h3>Pizza de frigideira</h3>
+          <div class="card-meta"><span>⏱ 20 min</span><span>🍽 3 porções</span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="tag-corner">R$ 3,00</span>
+        <img src="https://loremflickr.com/500/400/passionfruit,mousse" alt="Mousse de maracujá">
+        <div class="card-body">
+          <h3>Mousse de maracujá</h3>
+          <div class="card-meta"><span>⏱ 10 min + geladeira</span><span>🍽 8 porções</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="insta" id="instagram">
+    <div class="wrap">
+      <div class="insta-head">
+        <h2>Segue lá no Instagram</h2>
+        <p>Vídeo novo toda semana com o passo a passo — @estacaodasreceitas</p>
+      </div>
+      <div class="insta-grid">
+        <a href="#" aria-label="Vídeo de receita 1"><img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=400&h=400&fit=crop" alt=""></a>
+        <a href="#" aria-label="Vídeo de receita 2"><img src="https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=400&h=400&fit=crop" alt=""></a>
+        <a href="#" aria-label="Vídeo de receita 3"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&h=400&fit=crop" alt=""></a>
+        <a href="#" aria-label="Vídeo de receita 4"><img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=400&h=400&fit=crop" alt=""></a>
+      </div>
+      <div class="insta-cta">
+        <a href="#" target="_blank" rel="noopener">Ver perfil no Instagram →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Estação das Receitas</div>
+        <p style="max-width:36ch;font-size:0.9rem;">Receitas rápidas e baratas pra quem cozinha todo dia — sem gastar rio de dinheiro nem passar a tarde na cozinha.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Site</h4>
+        <ul>
+          <li><a href="#receitas">Receitas</a></li>
+          <li><a href="#receber">Receber grátis</a></li>
+          <li><a href="#">Sobre</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Redes</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">WhatsApp</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Estação das Receitas</span>
+      <span>Política de privacidade</span>
+    </div>
+  </div>
+</footer>
+
+
+
+</body>
+</html>
